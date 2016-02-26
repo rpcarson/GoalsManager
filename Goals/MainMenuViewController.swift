@@ -13,7 +13,16 @@ class MainMenuViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+
+        let defaults = NSUserDefaults.standardUserDefaults()
+        if let savedData = defaults.arrayForKey("data") {
+            
+            print("loaded?")
+            GoalsData.dailyGoalsArray = savedData as! [String]
+            
+        }
+    
+    
     }
 
     override func didReceiveMemoryWarning() {

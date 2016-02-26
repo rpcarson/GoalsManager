@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5B446E071C7FF36B0025A7D1 /* SummaryTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B446E061C7FF36B0025A7D1 /* SummaryTextView.swift */; };
+		5B446E091C7FF7230025A7D1 /* DataModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B446E081C7FF7230025A7D1 /* DataModels.swift */; };
 		5BBBCE831C7A579E00BADDC6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBBCE821C7A579E00BADDC6 /* AppDelegate.swift */; };
 		5BBBCE881C7A579E00BADDC6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5BBBCE861C7A579E00BADDC6 /* Main.storyboard */; };
 		5BBBCE8A1C7A579E00BADDC6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5BBBCE891C7A579E00BADDC6 /* Assets.xcassets */; };
@@ -21,6 +23,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5B446E061C7FF36B0025A7D1 /* SummaryTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SummaryTextView.swift; sourceTree = "<group>"; };
+		5B446E081C7FF7230025A7D1 /* DataModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataModels.swift; sourceTree = "<group>"; };
 		5BBBCE7F1C7A579E00BADDC6 /* Goals.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Goals.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5BBBCE821C7A579E00BADDC6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5BBBCE871C7A579E00BADDC6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -68,6 +72,8 @@
 			children = (
 				5BBBCE861C7A579E00BADDC6 /* Main.storyboard */,
 				5BBBCE981C7A6D8A00BADDC6 /* TextInputField.swift */,
+				5B446E061C7FF36B0025A7D1 /* SummaryTextView.swift */,
+				5B446E081C7FF7230025A7D1 /* DataModels.swift */,
 				5BF3D3271C7E9A7E00AB851C /* Supporting Files */,
 				5BF3D3261C7E9A6E00AB851C /* Cells */,
 				5BF3D3201C7E993500AB851C /* View Controllers */,
@@ -183,9 +189,11 @@
 				5BBBCE991C7A6D8A00BADDC6 /* TextInputField.swift in Sources */,
 				5BBBCE971C7A5ACE00BADDC6 /* DailyGoalCell.swift in Sources */,
 				5BF3D3241C7E9A5400AB851C /* OverviewCell.swift in Sources */,
+				5B446E071C7FF36B0025A7D1 /* SummaryTextView.swift in Sources */,
 				5BBBCE951C7A583C00BADDC6 /* MainTableViewController.swift in Sources */,
 				5BF3D31D1C7E96EA00AB851C /* GoalDetailViewController.swift in Sources */,
 				5BBBCE831C7A579E00BADDC6 /* AppDelegate.swift in Sources */,
+				5B446E091C7FF7230025A7D1 /* DataModels.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

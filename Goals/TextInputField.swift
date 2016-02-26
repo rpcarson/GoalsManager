@@ -13,6 +13,9 @@ import UIKit
 
 class TextInputField: UITextField, UITextFieldDelegate {
     
+    
+    let manager = DataManager()
+    
     var viewController: MainTableViewController? // this must be set to self in viewDidLoad
     
     
@@ -34,7 +37,13 @@ class TextInputField: UITextField, UITextFieldDelegate {
             
             if (text.rangeOfCharacterFromSet(letters) != nil) {
             
-            dailyGoalsArray.append(text)
+            GoalsData.dailyGoalsArray.append(text)
+                
+                var goal = GoalDetails()
+                goal.goalTitle = text
+                goal.dateCreated = NSDate()
+                manager.createDetailsDictionary(goal)
+                print("\(GoalsData.goalDetailsDictionary)")
                 
             }
             
@@ -49,7 +58,14 @@ class TextInputField: UITextField, UITextFieldDelegate {
         
         }
         
-        print(dailyGoalsArray.count)
+        print(GoalsData.dailyGoalsArray.count)
+        
+        
+    
+        
+        
+        
+//        manager.saveData(GoalsData.dailyGoalsArray)
 
         return true
         
