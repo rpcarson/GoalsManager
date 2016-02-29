@@ -21,19 +21,26 @@ class GoalDetailViewController: UIViewController, TextDelegate {
     @IBAction func test(sender: AnyObject) {
         
         updateTextView()
+        
+        print(goalSummaryTextBox?.text)
+
     
     }
+    
     
 
     func updateTextView() {
         
-        print(goalSummaryTextBox?.text)
+        print(self.goalSummaryTextBox?.text)
         
         print("delegate called")
         
         self.goalSummaryTextBox?.text = GoalsData.summaryText
         
-        print(goalSummaryTextBox?.text)
+        print(self.goalSummaryTextBox?.text)
+        
+        print(GoalsData.summaryText)
+            
 
     }
     

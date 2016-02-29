@@ -13,6 +13,7 @@ class TextEditViewController: UIViewController {
     var textDelegate: TextDelegate?
     
     
+    
     @IBOutlet weak var textView: UITextView?
     
     func configureView() {
@@ -50,10 +51,8 @@ class TextEditViewController: UIViewController {
         
         if let text = textView?.text {
             
-            
             GoalsData.summaryText = text
 
-            
         }
         
         
@@ -61,8 +60,6 @@ class TextEditViewController: UIViewController {
         
         self.navigationController?.popViewControllerAnimated(true)
         
-        
     }
-    
     
 }
