@@ -37,13 +37,14 @@ class TextInputField: UITextField, UITextFieldDelegate {
             
             if (text.rangeOfCharacterFromSet(letters) != nil) {
             
-            GoalsData.dailyGoalsArray.append(text)
+            GoalsData.goalNamesArray.append(text)
                 
-                var goal = GoalDetails()
-                goal.goalTitle = text
-                goal.dateCreated = NSDate()
-                manager.createDetailsDictionary(goal)
-                print("\(GoalsData.goalDetailsDictionary)")
+                let dateObject = NSDate() as AnyObject
+                let dateDict: [String:AnyObject] = ["date":dateObject]
+                
+                GoalsData.goalDetailsSavedData.updateValue(dateDict, forKey: text)
+                
+                print("date dict created \(dateDict)")
                 
             }
             
@@ -52,20 +53,11 @@ class TextInputField: UITextField, UITextFieldDelegate {
             reloadCells(view)
                 
             }
-            
-//            Overlord.mainViewInstance[0].tableView.reloadData()
-            
         
         }
         
-        print(GoalsData.dailyGoalsArray.count)
-        
-        
-    
-        
-        
-        
-//        manager.saveData(GoalsData.dailyGoalsArray)
+        print(GoalsData.goalNamesArray.count)
+
 
         return true
         

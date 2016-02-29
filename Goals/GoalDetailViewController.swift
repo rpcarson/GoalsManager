@@ -8,44 +8,68 @@
 
 import UIKit
 
-class GoalDetailViewController: UIViewController {
+protocol TextDelegate {
+    
+    func updateTextView()
+    
+}
+
+
+
+class GoalDetailViewController: UIViewController, TextDelegate {
+
+    @IBAction func test(sender: AnyObject) {
+        
+        updateTextView()
+    
+    }
+    
+
+    func updateTextView() {
+        
+        print(goalSummaryTextBox?.text)
+        
+        print("delegate called")
+        
+        self.goalSummaryTextBox?.text = GoalsData.summaryText
+        
+        print(goalSummaryTextBox?.text)
+
+    }
     
     @IBOutlet weak var goalTitle: UILabel?
-    
     @IBOutlet weak var goalCreationDate: UILabel?
-    
     @IBOutlet weak var goalSummaryTextBox: UITextView?
-    
-    
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        goalSummaryTextBox?.text = GoalsData.summaryText
         
         if let index = GoalsData.currentSelectedGoalIndex {
             
-            goalTitle?.text = GoalsData.dailyGoalsArray[index]
+            goalTitle?.text = GoalsData.goalNamesArray[index]
             
         }
         
         if let title = goalTitle?.text,
-            
-            goalDetails = GoalsData.goalDetailsDictionary[title] {
+           
+            let selectedGoal = GoalsData.goalDetailsSavedData[title] {
                 
-                if goalDetails.dateCreated != nil {
+                print(selectedGoal)
+            
+                if let date = selectedGoal["date"] as? NSDate {
                     
-                   let date = DateFormatter().formatDate(goalDetails.dateCreated!)
-                    
-                    goalCreationDate?.text = date
-                        
+                    print("date converted")
+
+                
+                goalCreationDate?.text = "Goal Created: \(DateFormatter().formatDate(date))"
                     
                 }
                 
         }
         
-        
-        // Do any additional setup after loading the view.
     }
     
     override func didReceiveMemoryWarning() {

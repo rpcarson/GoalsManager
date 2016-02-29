@@ -8,11 +8,6 @@
 
 import UIKit
 
-//class Overlord {
-//
-//    static var mainViewInstance: [MainTableViewController] = []
-//
-//}
 
 
 class MainTableViewController: UITableViewController {
@@ -24,9 +19,6 @@ class MainTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
-        //        Overlord.mainViewInstance.insert(self, atIndex: 0)
         
         configureView()
         
@@ -48,7 +40,7 @@ class MainTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         
-        return GoalsData.dailyGoalsArray.count
+        return GoalsData.goalNamesArray.count
     }
     
     
@@ -62,7 +54,7 @@ class MainTableViewController: UITableViewController {
         
         let cell = tableView.dequeueReusableCellWithIdentifier("dailyGoalCell", forIndexPath: indexPath) as! DailyGoalCell
         
-        cell.dailyGoalTitle.text = GoalsData.dailyGoalsArray[indexPath.row]
+        cell.dailyGoalTitle.text = GoalsData.goalNamesArray[indexPath.row]
         
         return cell
     }
@@ -74,7 +66,22 @@ class MainTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         
-        
+        if editingStyle == UITableViewCellEditingStyle.Delete {
+            
+            let nameKey = GoalsData.goalNamesArray[indexPath.row]
+            
+            if GoalsData.goalNamesArray.contains(GoalsData.goalNamesArray[indexPath.row]) {
+            
+            GoalsData.goalNamesArray.removeAtIndex(indexPath.row)
+                
+            }
+            
+            GoalsData.goalDetailsSavedData.removeValueForKey(nameKey)
+            
+            
+            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Fade)
+            
+        }
         
         
     }

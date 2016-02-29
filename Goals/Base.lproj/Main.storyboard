@@ -128,36 +128,56 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Goal Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V6U-ia-JNV">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Goal Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V6U-ia-JNV">
                                 <rect key="frame" x="227" y="78" width="146" height="42"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="35"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="write goal summary here" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ynR-Fk-Ax8">
-                                <rect key="frame" x="20" y="353" width="560" height="227"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="write goal summary here" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ynR-Fk-Ax8" customClass="SummaryTextView" customModule="Goals" customModuleProvider="target">
+                                <rect key="frame" x="20" y="447" width="560" height="133"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="goal creation date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yWM-2S-qyD">
-                                <rect key="frame" x="231.5" y="128.5" width="137.5" height="20.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <rect key="frame" x="249" y="131" width="102" height="14.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vbi-RO-8xT">
+                                <rect key="frame" x="229" y="409" width="142" height="30"/>
+                                <color key="backgroundColor" red="0.2901960784" green="0.56470588239999997" blue="0.8862745098" alpha="0.48653927364864863" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Add/Edit Description"/>
+                                <connections>
+                                    <segue destination="0tv-fp-pNB" kind="push" id="qmT-V0-SaW"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TAZ-Or-I1n">
+                                <rect key="frame" x="394" y="243" width="46" height="30"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="test:" destination="Ywj-WU-s81" eventType="touchUpInside" id="zQF-LC-uUP"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="ynR-Fk-Ax8" secondAttribute="trailing" id="0N6-br-EDf"/>
+                            <constraint firstItem="TAZ-Or-I1n" firstAttribute="centerY" secondItem="Yd8-dw-svh" secondAttribute="centerY" constant="-42" id="0kU-oy-eJ2"/>
                             <constraint firstAttribute="leadingMargin" secondItem="ynR-Fk-Ax8" secondAttribute="leading" id="3YE-Zv-CwZ"/>
                             <constraint firstItem="V6U-ia-JNV" firstAttribute="centerX" secondItem="Yd8-dw-svh" secondAttribute="centerX" id="4IL-pz-Jrv"/>
                             <constraint firstItem="ynR-Fk-Ax8" firstAttribute="centerX" secondItem="Yd8-dw-svh" secondAttribute="centerX" id="80d-lz-rPc"/>
+                            <constraint firstItem="TAZ-Or-I1n" firstAttribute="centerX" secondItem="Yd8-dw-svh" secondAttribute="centerX" constant="117" id="9Fc-G3-7RN"/>
                             <constraint firstItem="yWM-2S-qyD" firstAttribute="centerX" secondItem="Yd8-dw-svh" secondAttribute="centerX" id="I4f-L5-n6F"/>
                             <constraint firstItem="V6U-ia-JNV" firstAttribute="centerY" secondItem="Yd8-dw-svh" secondAttribute="centerY" constant="-201" id="NOA-VR-DUA"/>
                             <constraint firstItem="9n0-IM-SYi" firstAttribute="top" secondItem="ynR-Fk-Ax8" secondAttribute="bottom" constant="20" id="USW-if-ug7"/>
+                            <constraint firstItem="Vbi-RO-8xT" firstAttribute="centerY" secondItem="Yd8-dw-svh" secondAttribute="centerY" constant="124" id="asD-71-bLm"/>
+                            <constraint firstItem="Vbi-RO-8xT" firstAttribute="centerX" secondItem="Yd8-dw-svh" secondAttribute="centerX" id="cCQ-Yg-xGb"/>
                             <constraint firstItem="ynR-Fk-Ax8" firstAttribute="top" secondItem="V6U-ia-JNV" secondAttribute="bottom" constant="233" id="oVY-AR-GBg"/>
                             <constraint firstItem="yWM-2S-qyD" firstAttribute="centerY" secondItem="Yd8-dw-svh" secondAttribute="centerY" constant="-161.5" id="rWg-HQ-1HL"/>
+                            <constraint firstItem="ynR-Fk-Ax8" firstAttribute="top" secondItem="Vbi-RO-8xT" secondAttribute="bottom" constant="8" id="zZn-C1-kKR"/>
                         </constraints>
                     </view>
                     <connections>
@@ -169,6 +189,45 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1M0-Ir-hdq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3219" y="325"/>
+        </scene>
+        <!--Text Edit View Controller-->
+        <scene sceneID="ne3-6C-Z1M">
+            <objects>
+                <viewController storyboardIdentifier="textEditVC" id="0tv-fp-pNB" customClass="TextEditViewController" customModule="Goals" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="vIp-1v-EWZ"/>
+                        <viewControllerLayoutGuide type="bottom" id="qsm-zF-wv2"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="pQA-ol-oAJ">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="7ne-F5-k1P">
+                                <rect key="frame" x="20" y="72" width="560" height="345"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="7ne-F5-k1P" secondAttribute="trailing" id="PJA-Uy-6Z9"/>
+                            <constraint firstItem="7ne-F5-k1P" firstAttribute="centerX" secondItem="pQA-ol-oAJ" secondAttribute="centerX" id="dL3-iB-RrP"/>
+                            <constraint firstItem="7ne-F5-k1P" firstAttribute="centerY" secondItem="pQA-ol-oAJ" secondAttribute="centerY" constant="-55.5" id="wDd-Os-vBB"/>
+                            <constraint firstItem="7ne-F5-k1P" firstAttribute="top" secondItem="vIp-1v-EWZ" secondAttribute="bottom" constant="8" id="yP5-4D-cNW"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="7ne-F5-k1P" secondAttribute="leading" id="zzc-ac-F6H"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="LZh-U3-5TP"/>
+                    <connections>
+                        <outlet property="textView" destination="7ne-F5-k1P" id="VNN-hU-ZDq"/>
+                        <segue destination="Ywj-WU-s81" kind="show" identifier="textVCtoDetailVC" id="2U1-AE-BzT"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="D5X-XZ-SIT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4062" y="325"/>
         </scene>
         <!--Main Menu View Controller-->
         <scene sceneID="Wbh-tc-w1J">
@@ -232,4 +291,7 @@
             <point key="canvasLocation" x="893" y="16"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="2U1-AE-BzT"/>
+    </inferredMetricsTieBreakers>
 </document>

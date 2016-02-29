@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SummaryTextView: UITextView {
+class SummaryTextView: UITextView, UITextViewDelegate {
 
     
     

@@ -18,10 +18,18 @@ class MainMenuViewController: UIViewController {
         if let savedData = defaults.arrayForKey("data") {
             
             print("loaded?")
-            GoalsData.dailyGoalsArray = savedData as! [String]
+            GoalsData.goalNamesArray = savedData as! [String]
             
         }
-    
+        
+        if let saveDetails = defaults.objectForKey("details") {
+            
+            print("details loaded")
+            GoalsData.goalDetailsSavedData = saveDetails as! [String:[String:AnyObject]]
+            
+            
+        }
+        
     
     }
 

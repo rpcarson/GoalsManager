@@ -34,14 +34,14 @@ class OverviewTableViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return GoalsData.dailyGoalsArray.count
+        return GoalsData.goalNamesArray.count
     }
 
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("overviewCell", forIndexPath: indexPath) as! OverviewCell
         
-        cell.overviewCellLabel.text = GoalsData.dailyGoalsArray[indexPath.row]
+        cell.overviewCellLabel.text = GoalsData.goalNamesArray[indexPath.row]
 
         
         

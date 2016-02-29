@@ -30,30 +30,34 @@ struct DateFormatter {
 
 struct GoalsData {
     
-    static var dailyGoalsArray: [String] = [] {
+    static var goalNamesArray: [String] = [] {
         
         didSet {
             
-            DataManager().saveData(dailyGoalsArray)
+            DataManager().saveData(goalNamesArray)
             print("goal saved")
             
         }
     }
     
-    static var goalDetailsDictionary: [String:GoalDetails] = [:]
+    static var goalDetailsSavedData: [String:[String:AnyObject]] = [:] {
+        
+        didSet {
+            
+            DataManager().saveDetails(goalDetailsSavedData)
+            print("details saved")
+            
+        }
+        
+        
+    }
+    
     
     static var currentSelectedGoalIndex: Int?
+    
+    static var summaryText: String = "default"
 
 }
-
-
-
-struct GoalDetails {
-    var dateCreated: NSDate?
-    var goalSummary: String?
-    var goalTitle: String?
-}
-
 
 
 
@@ -64,6 +68,12 @@ class DataManager {
     func saveData(dataToBeSaved: [String]) {
         
         defaults.setObject(dataToBeSaved, forKey: "data")
+        
+    }
+    
+    func saveDetails(details: [String:[String:AnyObject]]) {
+        
+        defaults.setObject(details, forKey: "details")
         
     }
     
@@ -78,16 +88,7 @@ class DataManager {
         
     }
     
-    func createDetailsDictionary(goalDetails: GoalDetails) {
-        
-        if let key = goalDetails.goalTitle {
-    
-        GoalsData.goalDetailsDictionary.updateValue(goalDetails, forKey: key)
-            
-            
-        }
-    
-    }
+ 
     
 }
 
