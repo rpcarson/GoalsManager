@@ -9,8 +9,18 @@
 import UIKit
 
 class SummaryTextView: UITextView, UITextViewDelegate {
-
     
+  
+    var hasPlaceholder: Bool = true
     
-
+    let placeholderText: String = "enter a description of your goal"
+    
+    func addToDetailsDictionary(title: String, text: String) {
+        
+        var summaryDictionary: [String:AnyObject] = ["summary":text]
+        
+        GoalsData.goalDetailsSavedData.updateValue(summaryDictionary, forKey: title)
+    }
 }
+
+

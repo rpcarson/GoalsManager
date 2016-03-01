@@ -8,42 +8,10 @@
 
 import UIKit
 
-protocol TextDelegate {
-    
-    func updateTextView()
-    
-}
-
-
 
 class GoalDetailViewController: UIViewController, TextDelegate {
-
-    @IBAction func test(sender: AnyObject) {
-        
-        updateTextView()
-        
-        print(goalSummaryTextBox?.text)
-
     
-    }
-    
-    
-
-    func updateTextView() {
-        
-        print(self.goalSummaryTextBox?.text)
-        
-        print("delegate called")
-        
-        self.goalSummaryTextBox?.text = GoalsData.summaryText
-        
-        print(self.goalSummaryTextBox?.text)
-        
-        print(GoalsData.summaryText)
-            
-
-    }
-    
+   
     @IBOutlet weak var goalTitle: UILabel?
     @IBOutlet weak var goalCreationDate: UILabel?
     @IBOutlet weak var goalSummaryTextBox: UITextView?
@@ -52,32 +20,10 @@ class GoalDetailViewController: UIViewController, TextDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        goalSummaryTextBox?.text = GoalsData.summaryText
-        
-        if let index = GoalsData.currentSelectedGoalIndex {
-            
-            goalTitle?.text = GoalsData.goalNamesArray[index]
-            
-        }
-        
-        if let title = goalTitle?.text,
-           
-            let selectedGoal = GoalsData.goalDetailsSavedData[title] {
-                
-                print(selectedGoal)
-            
-                if let date = selectedGoal["date"] as? NSDate {
-                    
-                    print("date converted")
-
-                
-                goalCreationDate?.text = "Goal Created: \(DateFormatter().formatDate(date))"
-                    
-                }
-                
-        }
+        configureView()
         
     }
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -85,14 +31,68 @@ class GoalDetailViewController: UIViewController, TextDelegate {
     }
     
     
-    /*
+    // MARK: - SETUP UI
+    
+    func updateTextView() {
+        
+        if let title = goalTitle?.text {
+            
+            print("updating detail view summary")
+
+            goalSummaryTextBox?.text = GoalsData.goalDetailsDictionary["\(title):summary"] as? String
+
+        }
+    }
+    
+    func configureView() {
+        
+        if let index = GoalsData.currentSelectedGoalIndex {
+            
+            goalTitle?.text = GoalsData.goalNamesArray[index]
+            
+        }
+        
+        
+        if let title = goalTitle?.text {
+            
+            print("title found")
+            
+            let dateKey = "\(title):date"
+            let summaryKey = "\(title):summary"
+            
+            if let date = GoalsData.goalDetailsDictionary[dateKey] as? NSDate {
+                
+                print("date found")
+                
+                print("date is \(date)")
+                
+                goalCreationDate?.text = "Goal Created: \(DateFormatter().formatDate(date))"
+                
+            }
+            
+            if let summary = GoalsData.goalDetailsDictionary[summaryKey] as? String {
+                
+                print("summary found: \(summary)")
+                
+                goalSummaryTextBox?.text = summary
+                
+            }
+            
+        }
+
+        
+    }
+    
     // MARK: - Navigation
     
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    // Get the new view controller using segue.destinationViewController.
-    // Pass the selected object to the new view controller.
+        
+        if let destination = segue.destinationViewController as? TextEditViewController {
+            destination.textDelegate = self
+            destination.currentGoal = goalTitle?.text
+            
+            destination.textView?.text = goalSummaryTextBox?.text
+            
+        }
     }
-    */
-    
 }

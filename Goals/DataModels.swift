@@ -9,6 +9,11 @@
 import Foundation
 
 
+protocol TextDelegate : class {
+    
+    func updateTextView()
+    
+}
 
 
 
@@ -28,6 +33,46 @@ struct DateFormatter {
 }
 
 
+class DictionaryCreator {
+    
+    static func createDictionary(key: String, dataName: String, dataObject: AnyObject) {
+        
+        var targetDictionary = GoalsData.goalDetailsSavedData[key]
+        
+        targetDictionary?.updateValue(dataObject, forKey: dataName)
+        
+    }
+}
+
+enum DictionaryValues {
+    case Title
+    case Date
+    case Summary
+}
+
+class BreakdownDictionary {
+    
+    static func openDictionary(mainKey: String, desiredValue: DictionaryValues) -> AnyObject {
+        
+        if let dictionary = GoalsData.goalDetailsSavedData[mainKey],
+            let date = dictionary["date"],
+            let summary = dictionary["summary"] {
+                
+                switch desiredValue {
+                case .Date: return date
+                case .Summary: return summary
+                case .Title: return dictionary
+                    
+                }
+        }
+    
+        return "missing value"
+    
+    }
+}
+
+
+
 struct GoalsData {
     
     static var goalNamesArray: [String] = [] {
@@ -40,12 +85,26 @@ struct GoalsData {
         }
     }
     
+    static var goalDetailsDictionary: [String:AnyObject] = [:] {
+        
+        didSet {
+            
+            print("goalDetailsDictionary updated")
+            
+            DataManager().saveDetailsDictionary(goalDetailsDictionary)
+        
+        
+    }
+        
+    }
+    
     static var goalDetailsSavedData: [String:[String:AnyObject]] = [:] {
         
         didSet {
             
             DataManager().saveDetails(goalDetailsSavedData)
-            print("details saved")
+        
+        print("details saved")
             
         }
         
@@ -54,9 +113,7 @@ struct GoalsData {
     
     
     static var currentSelectedGoalIndex: Int?
-    
-    static var summaryText: String = "default"
-
+        
 }
 
 
@@ -64,7 +121,7 @@ struct GoalsData {
 class DataManager {
     
     let defaults = NSUserDefaults.standardUserDefaults()
-
+    
     func saveData(dataToBeSaved: [String]) {
         
         defaults.setObject(dataToBeSaved, forKey: "data")
@@ -77,19 +134,20 @@ class DataManager {
         
     }
     
-
-    
-    func retrieveData(data: String) -> NSObject {
+    static func appendDetailsDictionary(goalName: String, dataName: String, data: AnyObject) {
         
-        guard let unwrappedData = defaults.stringForKey(data) else { print("data retrieve fail") ; return "nil" }
+        let key = "\(goalName):\(dataName)"
         
-        return unwrappedData
+        print(key)
         
+        GoalsData.goalDetailsDictionary.updateValue(data, forKey: key)
         
     }
     
- 
-    
+     func saveDetailsDictionary(details: [String:AnyObject]) {
+        
+        defaults.setObject(details, forKey: "detailsDictionary")
+    }
 }
 
 

@@ -40,11 +40,13 @@ class TextInputField: UITextField, UITextFieldDelegate {
             GoalsData.goalNamesArray.append(text)
                 
                 let dateObject = NSDate() as AnyObject
+                
                 let dateDict: [String:AnyObject] = ["date":dateObject]
                 
-                GoalsData.goalDetailsSavedData.updateValue(dateDict, forKey: text)
+//                GoalsData.goalDetailsSavedData.updateValue(dateDict, forKey: text)
                 
-                print("date dict created \(dateDict)")
+                DataManager.appendDetailsDictionary(text, dataName: "date", data: dateObject)
+                
                 
             }
             
@@ -56,9 +58,6 @@ class TextInputField: UITextField, UITextFieldDelegate {
         
         }
         
-        print(GoalsData.goalNamesArray.count)
-
-
         return true
         
     }

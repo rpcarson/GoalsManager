@@ -13,7 +13,8 @@ class MainMenuViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-
+        
+        
         let defaults = NSUserDefaults.standardUserDefaults()
         if let savedData = defaults.arrayForKey("data") {
             
@@ -27,6 +28,13 @@ class MainMenuViewController: UIViewController {
             print("details loaded")
             GoalsData.goalDetailsSavedData = saveDetails as! [String:[String:AnyObject]]
             
+            
+        }
+        
+        if let detailsDictionary = defaults.objectForKey("detailsDictionary") {
+            
+            print("detailsDictionary loaded")
+            GoalsData.goalDetailsDictionary = detailsDictionary as! [String:AnyObject]
             
         }
         

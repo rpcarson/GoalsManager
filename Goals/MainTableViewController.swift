@@ -10,12 +10,13 @@ import UIKit
 
 
 
-class MainTableViewController: UITableViewController {
+class MainTableViewController: UITableViewController, UITextFieldDelegate {
+    
     
     @IBOutlet weak var textInput: TextInputField?
-    
     @IBOutlet weak var textContainerView: UIView!
     
+    var selectedGoalIndex: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,6 +48,8 @@ class MainTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         GoalsData.currentSelectedGoalIndex = indexPath.row
+        
+        selectedGoalIndex = indexPath.row
         
     }
     
@@ -102,17 +105,32 @@ class MainTableViewController: UITableViewController {
         if let text = textInput {
             text.hidden = true
             text.delegate = textInput.self
-            
+
             textContainerView.frame.size.height = 1
             
         }
         
-        
         navigationItem.title = "Daily Goals"
-        
         navigationItem.setRightBarButtonItem(UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "barPlusButton"), animated: true)
-        
     }
     
+    // MARK: - Navigation
+    
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        if let destinationVC = segue.destinationViewController as? GoalDetailViewController {
+            
+            if let index = selectedGoalIndex {
+                
+                destinationVC.goalTitle?.text = GoalsData.goalNamesArray[index]
+                
+                print("\(GoalsData.goalNamesArray[index]) segue call")
+
+            }
+            
+        }
+        
+    }
     
 }

@@ -8,53 +8,99 @@
 
 import UIKit
 
-class TextEditViewController: UIViewController {
+class TextEditViewController: UIViewController, UITextViewDelegate {
     
-    var textDelegate: TextDelegate?
+    weak var textDelegate: TextDelegate?
+    
+    var currentGoal: String?
+    
+    @IBOutlet weak var textView: SummaryTextView?
     
     
-    
-    @IBOutlet weak var textView: UITextView?
-    
-    func configureView() {
+    // clear text on begin typing
+    func textViewDidChange(textView: UITextView) {
         
-        navigationItem.title = "Edit Description"
-        navigationItem.setRightBarButtonItem((UIBarButtonItem(barButtonSystemItem: .Done, target: self, action: "segue")), animated: true)
-    
+        guard let text = self.textView else { return }
+        
+        if text.hasPlaceholder == true {
+            
+            let string = text.text
+            
+            let characterArray = string.characters.map{String($0)}
+            
+            if let lastCharacter = characterArray.last {
+                
+                text.text = lastCharacter
+            }
+            
+            text.hasPlaceholder = false
+            
+        }
+        
     }
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        
+        textView?.delegate = self
         textView?.becomeFirstResponder()
-        
-        
         configureView()
         
     }
     
+   
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
+    // MARK: - SETUP UI
+    
+    func configureView() {
+        
+        navigationItem.title = "Edit Description"
+        navigationItem.setRightBarButtonItem((UIBarButtonItem(barButtonSystemItem: .Done, target: self, action: "pop")), animated: true)
+        
+        
+        if let title = currentGoal {
+            
+            let summaryKey = "\(title):summary"
+            
+            if let summary = GoalsData.goalDetailsDictionary[summaryKey] as? String {
+                    
+                    textView?.text = summary
+                    textView?.hasPlaceholder = false
+        
+            } else {
+                
+                textView?.text = textView?.placeholderText
+                
+            }
+            
+        }
+        
+    }
     
     
     // MARK: - Navigation
-
     
-    func segue() {
+    
+    func pop() {
         
-        textDelegate = GoalDetailViewController()
         
         if let text = textView?.text {
-            
-            GoalsData.summaryText = text
-
-        }
+                        
+            print("summary was created")
         
+            let key = "\(currentGoal!):summary"
+            
+            GoalsData.goalDetailsDictionary.updateValue(text, forKey: key)
+        
+            print(key)
+        
+        }
         
         textDelegate?.updateTextView()
         
